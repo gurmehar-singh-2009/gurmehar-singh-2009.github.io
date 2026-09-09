@@ -1,0 +1,19 @@
+{
+  "name": "personal_site",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "vite": "^8.2.2"
+  },
+  "scripts": {
+    "gleam": "gleam build",
+    "check": "gleam check",
+    "typecheck": "tsc --noEmit",
+    "dev": "bun run gleam && vite",
+    "build": "bun run gleam && bun run typecheck && vite build"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
