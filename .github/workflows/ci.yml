@@ -34,10 +34,10 @@ jobs:
         run: bun ci
 
       - name: Check Gleam
-        run: bun run gleam:check
+        run: bun run check
 
       - name: Build Gleam
-        run: bun run gleam:build
+        run: bun run gleam
 
       - name: Typecheck TypeScript
         run: bun run typecheck
