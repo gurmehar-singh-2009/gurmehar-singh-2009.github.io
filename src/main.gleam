@@ -1,20 +1,26 @@
+import events
 import gleam/float
 import gleam/int
 import gleam/list
 import web as dom
-import events
 
 const hero_line = "i build multiplayer games and the engines underneath them."
 
-const about_bio =
-  "i write rust and typescript, mostly for multiplayer games and the engines that run them. "
+const about_bio = "i write rust and typescript, mostly for multiplayer games and the engines that run them. "
   <> "i care about the things players feel but never name: input latency, packet overhead, "
   <> "the frame that didn't drop."
 
 const loop_line = "loop { code().optimize().overengineer()?; }"
 
 type Project {
-  Project(title: String, lang: String, stars: String, forks: String, blurb: String, link: String)
+  Project(
+    title: String,
+    lang: String,
+    stars: String,
+    forks: String,
+    blurb: String,
+    link: String,
+  )
 }
 
 const projects = [
@@ -80,18 +86,20 @@ fn nav() -> dom.Element {
   |> dom.add_class("bar")
   |> dom.with_children([
     dom.link()
-    |> dom.add_class("brand")
-    |> dom.set_attr("href", "#top")
-    |> dom.set_text("gurmehar singh"),
+      |> dom.add_class("brand")
+      |> dom.set_attr("href", "#top")
+      |> dom.set_text("gurmehar singh"),
     dom.box()
-    |> dom.add_class("nav-right")
-    |> dom.with_children([
-      dom.run() |> dom.add_class("nav-meta") |> dom.set_text("rust · typescript · webgpu"),
-      dom.link()
-      |> dom.add_class("nav-link")
-      |> dom.set_attr("href", github)
-      |> dom.set_text("github ↗"),
-    ]),
+      |> dom.add_class("nav-right")
+      |> dom.with_children([
+        dom.run()
+          |> dom.add_class("nav-meta")
+          |> dom.set_text("rust · typescript · webgpu"),
+        dom.link()
+          |> dom.add_class("nav-link")
+          |> dom.set_attr("href", github)
+          |> dom.set_text("github ↗"),
+      ]),
   ])
 }
 
@@ -102,8 +110,8 @@ fn hero() -> dom.Element {
   |> dom.with_children([
     rising(
       dom.heading1()
-      |> dom.add_class("hero-name")
-      |> dom.set_text("Gurmehar Singh"),
+        |> dom.add_class("hero-name")
+        |> dom.set_text("Gurmehar Singh"),
       0,
     ),
     rising(
@@ -135,8 +143,8 @@ fn work() -> dom.Element {
   |> dom.with_children([
     section_head("selected work"),
     dom.box()
-    |> dom.add_class("project-grid")
-    |> dom.with_children(list.index_map(projects, project_card)),
+      |> dom.add_class("project-grid")
+      |> dom.with_children(list.index_map(projects, project_card)),
   ])
 }
 
@@ -155,20 +163,22 @@ fn project_card(p: Project, i: Int) -> dom.Element {
   |> dom.with_children([
     dom.run() |> dom.add_class("card-no") |> dom.set_text(pad2(i + 1)),
     dom.box()
-    |> dom.add_class("card-main")
-    |> dom.with_children([
-      dom.link()
-      |> dom.add_class("card-title")
-      |> dom.set_attr("href", p.link)
-      |> dom.set_text(p.title),
-      dom.paragraph() |> dom.add_class("card-blurb") |> dom.set_text(p.blurb),
-    ]),
+      |> dom.add_class("card-main")
+      |> dom.with_children([
+        dom.link()
+          |> dom.add_class("card-title")
+          |> dom.set_attr("href", p.link)
+          |> dom.set_text(p.title),
+        dom.paragraph() |> dom.add_class("card-blurb") |> dom.set_text(p.blurb),
+      ]),
     dom.box()
-    |> dom.add_class("card-side")
-    |> dom.with_children([
-      dom.run() |> dom.add_class("card-stats") |> dom.set_text("★ " <> p.stars <> " · ⑂ " <> p.forks),
-      dom.run() |> dom.add_class("card-lang") |> dom.set_text(p.lang),
-    ]),
+      |> dom.add_class("card-side")
+      |> dom.with_children([
+        dom.run()
+          |> dom.add_class("card-stats")
+          |> dom.set_text("★ " <> p.stars <> " · ⑂ " <> p.forks),
+        dom.run() |> dom.add_class("card-lang") |> dom.set_text(p.lang),
+      ]),
   ])
 }
 
@@ -185,7 +195,10 @@ fn about() -> dom.Element {
   |> dom.add_class("section")
   |> dom.with_children([
     section_head("about"),
-    rising(dom.paragraph() |> dom.add_class("about-bio") |> dom.set_text(about_bio), 0),
+    rising(
+      dom.paragraph() |> dom.add_class("about-bio") |> dom.set_text(about_bio),
+      0,
+    ),
     rising(dom.run() |> dom.add_class("loop") |> dom.set_text(loop_line), 1),
   ])
 }
@@ -195,17 +208,19 @@ fn foot() -> dom.Element {
   |> dom.add_class("foot")
   |> dom.with_children([
     dom.paragraph()
-    |> dom.add_class("foot-line")
-    |> dom.with_children([
-      dom.text("everything else on "),
-      dom.link()
-      |> dom.add_class("foot-link")
-      |> dom.set_attr("href", github)
-      |> dom.set_text("github ↗"),
-    ]),
+      |> dom.add_class("foot-line")
+      |> dom.with_children([
+        dom.text("everything else on "),
+        dom.link()
+          |> dom.add_class("foot-link")
+          |> dom.set_attr("href", github)
+          |> dom.set_text("github ↗"),
+      ]),
     dom.run()
-    |> dom.add_class("foot-note")
-    |> dom.set_text("© 2026 · background: an n-body simulation, integrated in gleam"),
+      |> dom.add_class("foot-note")
+      |> dom.set_text(
+        "© 2026 · background: an n-body simulation, integrated in gleam",
+      ),
   ])
 }
 
@@ -293,7 +308,13 @@ fn advance(sky: Sky, now: Float) -> Sky {
     False -> {
       let _ = dom.size_surface(sky.surface, w, h)
       let ctx = dom.context(sky.surface)
-      Sky(..sky, ctx: ctx, w: w, h: h, bodies: rescale(sky.bodies, sky.w, sky.h, w, h))
+      Sky(
+        ..sky,
+        ctx: ctx,
+        w: w,
+        h: h,
+        bodies: rescale(sky.bodies, sky.w, sky.h, w, h),
+      )
     }
   }
 
@@ -319,14 +340,20 @@ fn system(w: Float, h: Float) -> List(Body) {
   let cx = w *. 0.5
   let cy = h *. 0.5
   let s = scale_for(w, h)
-  let planets = list.index_map(orbit_specs, fn(spec, i) { planet(spec, i, cx, cy, s) })
+  let planets =
+    list.index_map(orbit_specs, fn(spec, i) { planet(spec, i, cx, cy, s) })
 
   let #(mx, my, mvx, mvy) =
     list.fold(planets, #(0.0, 0.0, 0.0, 0.0), fn(acc, p) {
       let px = p.x -. cx
       let py = p.y -. cy
       let #(ax, ay, avx, avy) = acc
-      #(ax +. p.mass *. px, ay +. p.mass *. py, avx +. p.mass *. p.vx, avy +. p.mass *. p.vy)
+      #(
+        ax +. p.mass *. px,
+        ay +. p.mass *. py,
+        avx +. p.mass *. p.vx,
+        avy +. p.mass *. p.vy,
+      )
     })
 
   let star =
@@ -347,7 +374,8 @@ fn system(w: Float, h: Float) -> List(Body) {
 fn planet(spec: Spec, i: Int, cx: Float, cy: Float, s: Float) -> Body {
   let jitter = 1.0 +. float.random() *. 0.15
   let r = spec.radius *. s *. jitter
-  let assert Ok(#(ux, uy)) = dirs
+  let assert Ok(#(ux, uy)) =
+    dirs
     |> list.drop(i % 5)
     |> list.first()
   let total = star_mass +. spec.mass
@@ -421,7 +449,11 @@ fn pull(i: Int, b: Body, bodies: List(Body)) -> #(Float, Float) {
   })
 }
 
-fn drift(bodies: List(Body), accs: List(#(Float, Float)), h: Float) -> List(Body) {
+fn drift(
+  bodies: List(Body),
+  accs: List(#(Float, Float)),
+  h: Float,
+) -> List(Body) {
   let half = h *. 0.5
   case bodies, accs {
     [b, ..bt], [a, ..at] -> {
@@ -429,7 +461,7 @@ fn drift(bodies: List(Body), accs: List(#(Float, Float)), h: Float) -> List(Body
       let py = a.1 *. half *. h
       [
         Body(..b, x: b.x +. b.vx *. h +. px, y: b.y +. b.vy *. h +. py),
-        ..drift(bt, at, h),
+        ..drift(bt, at, h)
       ]
     }
     _, _ -> []
@@ -449,7 +481,7 @@ fn kick(
       let dvy = a1.1 +. a2.1
       [
         Body(..b, vx: b.vx +. dvx *. half, vy: b.vy +. dvy *. half),
-        ..kick(bt, a1t, a2t, h),
+        ..kick(bt, a1t, a2t, h)
       ]
     }
     _, _, _ -> []
@@ -502,7 +534,13 @@ fn reset(b: Body, star: Body) -> Body {
   )
 }
 
-fn rescale(bodies: List(Body), ow: Float, oh: Float, nw: Float, nh: Float) -> List(Body) {
+fn rescale(
+  bodies: List(Body),
+  ow: Float,
+  oh: Float,
+  nw: Float,
+  nh: Float,
+) -> List(Body) {
   let raw = smaller(nw, nh) /. smaller(ow, oh)
   let s = case raw >. 1.6 {
     True -> 1.6
@@ -547,7 +585,11 @@ fn paint(sky: Sky) -> Nil {
   })
 }
 
-fn draw_trail(ctx: dom.Context, alpha: Float, trail: List(#(Float, Float))) -> Nil {
+fn draw_trail(
+  ctx: dom.Context,
+  alpha: Float,
+  trail: List(#(Float, Float)),
+) -> Nil {
   let total = list.length(trail)
   do_trail(ctx, alpha *. 0.15, trail, total, 0)
 }

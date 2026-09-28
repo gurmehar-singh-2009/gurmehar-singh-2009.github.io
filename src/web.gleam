@@ -4,7 +4,6 @@ pub type Element
 
 pub type Context
 
-
 @external(javascript, "../../../../bindings/dom.ts", "body")
 pub fn body() -> Element
 
@@ -70,12 +69,23 @@ pub fn clear(ctx: Context) -> Context
 
 @external(javascript, "../../../../bindings/dom.ts", "dot")
 pub fn dot(
-  ctx: Context, x: Float, y: Float, r: Float, color: String, alpha: Float,
+  ctx: Context,
+  x: Float,
+  y: Float,
+  r: Float,
+  color: String,
+  alpha: Float,
 ) -> Context
 
 @external(javascript, "../../../../bindings/dom.ts", "thread")
 pub fn thread(
-  ctx: Context, x1: Float, y1: Float, x2: Float, y2: Float, color: String, alpha: Float,
+  ctx: Context,
+  x1: Float,
+  y1: Float,
+  x2: Float,
+  y2: Float,
+  color: String,
+  alpha: Float,
 ) -> Context
 
 @external(javascript, "../../../../bindings/dom.ts", "viewport_width")
@@ -89,4 +99,11 @@ pub fn with_children(parent: Element, children: List(Element)) -> Element {
 }
 
 @external(javascript, "../../../../bindings/dom.ts", "ring")
-pub fn ring(ctx: Context, cx: Float, cy: Float, r: Float, color: String, alpha: Float) -> Context
+pub fn ring(
+  ctx: Context,
+  cx: Float,
+  cy: Float,
+  r: Float,
+  color: String,
+  alpha: Float,
+) -> Context
